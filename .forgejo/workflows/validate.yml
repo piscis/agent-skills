@@ -9,6 +9,6 @@ jobs:
   check-skills:
     runs-on: docker
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate skill definitions
         run: sh scripts/check-skills.sh
