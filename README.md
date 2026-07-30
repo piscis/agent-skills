@@ -4,20 +4,51 @@ Personal Agent Skills for **Cursor** and **Claude Code**. Install with the [Skil
 
 ## Install
 
+### Globally (all your projects)
+
 ```bash
-# All skills, global, Cursor + Claude Code
+# All skills, Cursor + Claude Code
 npx skills add piscis/agent-skills -g -a cursor -a claude-code -y
 
 # Or install everything to all agents
 npx skills add piscis/agent-skills --all -g
+
+# Update later
+npx skills update -g
 ```
 
-```bash
-# Preview skills without installing
-npx skills add piscis/agent-skills --list
+### A single skill, into one project
 
-# Update after new changes are published
-npx skills update -g
+Run this from the project root. Omitting `-g` installs at project scope:
+
+```bash
+npx skills add piscis/agent-skills --skill conventional-commit -a claude-code -y
+```
+
+That writes the skill into the project and records it in `skills-lock.json`:
+
+```
+.claude/skills/conventional-commit/SKILL.md
+skills-lock.json
+```
+
+Commit both, and anyone else on the project gets the same skill. Update it later with
+`npx skills update -p`.
+
+For more than one skill, **repeat `--skill`** — a comma-separated list is not accepted:
+
+```bash
+npx skills add piscis/agent-skills --skill ask-me --skill ai-review -a claude-code -y
+```
+
+Targeting several agents at once (`-a claude-code -a cursor`) installs into
+`.agents/skills/<name>/` and symlinks each agent's directory at it, rather than copying into
+`.claude/skills/`. Skills with a `references/` directory bring it along either way.
+
+### Preview first
+
+```bash
+npx skills add piscis/agent-skills --list
 ```
 
 ## Skill index
