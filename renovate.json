@@ -1,0 +1,43 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(ci)",
+    ":dependencyDashboard"
+  ],
+  "timezone": "Europe/Berlin",
+  "schedule": ["before 6am on monday"],
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 2,
+  "labels": ["dependencies"],
+  "commitMessageLowerCase": "auto",
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "description": "This repo ships markdown skills and one shell script; workflow actions are the only real dependency. Keep their bumps in a single PR.",
+      "matchManagers": ["github-actions"],
+      "groupName": "workflow actions"
+    },
+    {
+      "description": "Actions are pinned to major tags only, so minor/patch bumps are safe to merge once the skill validator passes.",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Major action bumps can change runner behaviour — always review by hand.",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "schedule": ["at any time"]
+  },
+  "lockFileMaintenance": {
+    "enabled": false
+  }
+}

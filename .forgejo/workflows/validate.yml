@@ -1,0 +1,14 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check-skills:
+    runs-on: docker
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate skill definitions
+        run: sh scripts/check-skills.sh

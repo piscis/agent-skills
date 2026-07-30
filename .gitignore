@@ -1,0 +1,9 @@
+.DS_Store
+.ai_review/
+review-body.md
+.claude/
+*.log
+.idea/
+.vscode/
+*.swp
+*~
