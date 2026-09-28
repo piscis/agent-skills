@@ -59,9 +59,10 @@ npx skills add piscis/agent-skills --list
 | [`ask-me`](skills/ask-me/SKILL.md) | Surface only the open questions the user must answer to improve the current plan or task. |
 | [`commit-push-pr`](skills/commit-push-pr/SKILL.md) | Create a branch if needed, commit, then push and open a PR after confirmation (GitHub `gh` or Forgejo MCP). |
 | [`conventional-commit`](skills/conventional-commit/SKILL.md) | Preview a Conventional Commits message, then commit only after explicit confirmation. |
+| [`orpc-api`](skills/orpc-api/SKILL.md) | oRPC + Zod 4 procedure conventions for piscis/fritzbox-cloudflare-dyndns-vercel (schemas, typed error mapping, `/api` catch-all). Auto-applied. |
 | [`update-issue`](skills/update-issue/SKILL.md) | Refine an issue title, body, and acceptance criteria, then update after approval (GitHub or Forgejo). |
 
-Invoke explicitly (slash skill / `$skill`) — these use `disable-model-invocation: true`.
+Invoke explicitly (slash skill / `$skill`) — these use `disable-model-invocation: true`, except `orpc-api`, which the agent applies from context.
 
 ## Authoring
 
